@@ -2,32 +2,40 @@
 <html ng-app="uitest">
 <head>
     <title>News</title>
-    <style type="text/css" src="../css/uidevtest.css"></style>
-
+    <link rel="stylesheet" href="../css/uidevtest.css">
+    <script
+            type="text/javascript"
+            src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.2/angular.min.js">
+    </script>
+    <script type="text/javascript" src="../js/uitest.js"></script>
+    <script type="text/javascript" src="../js/date.js"></script>
 </head>
 <body>
-<h1>Hello World</h1>
+<div class="center">
 
-<div ng-controller="ctrl">
-    <div ng-repeat="story in stories">
-        <div class="list-img">
-            <img  src="{{story.lead_photo_image_thumb}}" alt="{{story.lead_photo_caption}}" class="thumb" >
+
+<h1>UI Dev Test</h1>
+
+    <div ng-controller="ctrl">
+        <div ng-repeat="story in stories" class="list-story">
+            <div class="list-img">
+                <img  src="{{story.lead_photo_image_thumb}}" alt="{{story.lead_photo_caption}}" class="thumb shadow" >
+            </div>
+            <div class="list-container">
+                <a href="#" class="list-head-line-link">{{ story.summary}}</a></br/>
+                <span class="list-categories">Category / {{story.categories_name.join(', ')}}</span>
+
+                <div class="list-dates">
+                    Posted: {{formatDate(story.pub_date)}}</br/>
+                    Updated: {{formatDate(story.updated)}}
+                </div>
+
+            </div>
         </div>
-        <div class="list-container">
-            <p><a href="#" class="list-head-line-link">{{ story.summary}}</a></p>
-            Category / {{story.categories_name.join(', ')}}</br/>
-            Posted: {{formatDate(story.pub_date)}}</br/>
-            Updated: {{formatDate(story.updated)}}
-        </div>
+
     </div>
-</div>
 
-<script
-        type="text/javascript"
-        src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.2/angular.min.js">
-</script>
-<script type="text/javascript" src="../js/uitest.js"></script>
-<script type="text/javascript" src="../js/date.js"></script>
+</div>
 
 </body>
 </html>
