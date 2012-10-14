@@ -21,6 +21,11 @@ function ctrl($scope,  $http) {
         $scope.stories = data.objects;
     });
 
+    $scope.formatDate = function(value){
+        var d = new Date(value);
+        return d.toString('hh:mm tt dddd, MMM. d, yyyy');
+    };
+
 
 }
 
