@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html ng-app="uitest">
+<head>
+    <title>News</title>
+    <script
+            type="text/javascript"
+            src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.2/angular.min.js">
+    </script>
+    <script
+            type="text/javascript"
+            src="../js/uitest.js">
+    </script>
+</head>
+<body>
+<h1>Hello World</h1>
+
+<div ng-controller="ctrl">
+    <div ng-repeat="story in stories">
+        {{story.author[0]}}
+
+    </div>
+</div>
+
+</body>
+</html>
