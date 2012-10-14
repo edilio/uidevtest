@@ -28,6 +28,13 @@
     width: 30%;
 }
 
+.view-picture{
+    width: 260px;
+    height: 330px;
+    padding:1px;
+    border:1px solid #021a40;
+}
+
 .list-container{
     float: right;
     width:50%;

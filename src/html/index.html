@@ -3,26 +3,34 @@
 <head>
     <title>News</title>
     <link rel="stylesheet" href="../css/uidevtest.css">
+    <script type="text/javascript" src="../js/jquery-1.8.0.min.js"></script>
     <script
             type="text/javascript"
             src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.2/angular.min.js">
     </script>
     <script type="text/javascript" src="../js/uitest.js"></script>
+
     <script type="text/javascript" src="../js/date.js"></script>
 </head>
 <body>
-<div class="center">
+
+<div ng-controller="ctrl">
+
+
+<div class="center" ng-show="showList">
 
 
 <h1>UI Dev Test</h1>
 
-    <div ng-controller="ctrl">
+    <div>
         <div ng-repeat="story in stories" class="list-story">
             <div class="list-img">
-                <img  src="{{story.lead_photo_image_thumb}}" alt="{{story.lead_photo_caption}}" class="thumb shadow" >
+                <a ng-href="?story={{story.index}}">
+                    <img  ng-src="{{story.lead_photo_image_thumb}}" alt="{{story.lead_photo_caption}}" class="thumb shadow" >
+                </a>
             </div>
             <div class="list-container">
-                <a href="#" class="list-head-line-link">{{ story.summary}}</a></br/>
+                <a ng-href="?story={{story.index}}" class="list-head-line-link">{{ story.summary}}</a></br/>
                 <span class="list-categories">Category / {{story.categories_name.join(', ')}}</span>
 
                 <div class="list-dates">
@@ -34,6 +42,43 @@
         </div>
 
     </div>
+
+</div>
+
+<div ng-hide="showList">
+
+    <hr>
+    HOME > NEWS
+    <hr>
+    <div class="list-dates">
+        Posted: {{formatDate(currentStory.pub_date)}}
+        Updated: {{formatDate(currentStory.updated)}}
+    </div>
+    <h1>{{currentStory.title}}</h1>
+    <div> Comment Share Favorite Vote</div>
+    <div>
+            <div class="view-img">
+               <img  ng-src="{{currentStory.lead_photo_image_url}}" alt="{{currentStory.lead_photo_caption}}" class="view-picture" shadow" >
+            </div>
+        <div>{{currentStory.lead_photo_credit}}</div>
+        <div> {{currentStory.summary}}</div>
+        <div>
+            By {{currentStory.author[0]}}
+        </div>
+        <div id="currentStory">
+
+        </div>
+            <div class="view-container">
+                <a ng-href="?story={{story.index}}" class="list-head-line-link">{{ currentStory.summary}}</a></br/>
+                <span class="list-categories">Category / {{currentStory.categories_name.join(', ')}}</span>
+
+
+
+            </div>
+
+    </div>
+
+</div>
 
 </div>
 
