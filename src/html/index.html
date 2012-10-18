@@ -30,11 +30,11 @@
                 </a>
             </div>
             <div class="list-container">
-                <a ng-href="?story={{story.index}}" class="list-head-line-link">{{ story.summary}}</a></br/>
+                <a ng-href="?story={{story.index}}" class="list-head-line-link">{{ story.summary}}</a><br/>
                 <span class="list-categories">Category / {{story.categories_name.join(', ')}}</span>
 
                 <div class="list-dates">
-                    Posted: {{formatDate(story.pub_date)}}</br/>
+                    Posted: {{formatDate(story.pub_date)}}<br/>
                     Updated: {{formatDate(story.updated)}}
                 </div>
 
@@ -45,7 +45,7 @@
 
 </div>
 
-<div ng-hide="showList">
+<div ng-hide="showList" class="news-detail">
 
     <hr>
     HOME > NEWS
@@ -55,26 +55,30 @@
         Updated: {{formatDate(currentStory.updated)}}
     </div>
     <h1>{{currentStory.title}}</h1>
-    <div> Comment Share Favorite Vote</div>
+    <div class="bread-crumb">
+
+        <ul>
+            <li><a class="bread-crumb-icon comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a><a><span class="bread-crumb-span">Comment</span></a></li>
+            <li><a class="bread-crumb-icon share">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a><a><span class="bread-crumb-span">Share</span></a></li>
+            <li><a class="bread-crumb-icon favorite">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a><a><span class="bread-crumb-span">Favorite</span> </a></li>
+            <li><a class="bread-crumb-icon vote">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a><a><span class="bread-crumb-span">Vote</span></a></li>
+        </ul>
+    </div>
+
+
     <div>
-            <div class="view-img">
-               <img  ng-src="{{currentStory.lead_photo_image_url}}" alt="{{currentStory.lead_photo_caption}}" class="view-picture" shadow" >
-            </div>
-        <div>{{currentStory.lead_photo_credit}}</div>
-        <div> {{currentStory.summary}}</div>
+            <div class="view-picture">
+               <img  ng-src="{{currentStory.lead_photo_image_url}}" alt="{{currentStory.lead_photo_caption}}" class="view-picture shadow" >
+            </div><br/>
+        <div class="photo-caption"> {{currentStory.lead_photo_caption}}</div><br/>
+        <div> {{currentStory.summary}}</div><br/>
         <div>
-            By {{currentStory.author[0]}}
-        </div>
+            By <a href="#">{{currentStory.author[0]}}</a>
+        </div><br/>
         <div id="currentStory">
 
         </div>
-            <div class="view-container">
-                <a ng-href="?story={{story.index}}" class="list-head-line-link">{{ currentStory.summary}}</a></br/>
-                <span class="list-categories">Category / {{currentStory.categories_name.join(', ')}}</span>
 
-
-
-            </div>
 
     </div>
 
