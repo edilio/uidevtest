@@ -16,13 +16,32 @@ var app = angular.module('uitest', []).
 app.factory('ui_data', ['$http',function($http) {
     var stories = [];
 
-    var insertIndex = function (storyList){
-        var injectIndex = function (item) {
+    var getMiddle = function (text){
+        var found = false,
+            len = text.length,
+            i = Math.floor(len / 2);
+
+        while ((!found) && (i > 0)){
+            //<p>
+            found = (text.substring(i,i+4) === "</p>");
+            if (!found){
+                i -= 1;
+            }
+        }
+        return i;
+    };
+
+    var insertProperties = function (storyList){
+        var injectProperties = function (item) {
+            var story = item["story"],
+                middle = getMiddle(story);
             item["index"] = 'sto0' + (storyList.indexOf(item)+1).toString(10);
+            item["leftColumn"] = story.substring(0,middle);
+            item["rightColumn"] = story.substring(middle, story.length);
             return item;
         };
 
-        return storyList.map(injectIndex);
+        return storyList.map(injectProperties);
     };
 
     return {
@@ -32,7 +51,7 @@ app.factory('ui_data', ['$http',function($http) {
             var i = parseInt(index[index.length-1]) - 1;
             return stories[i];
         },
-        insertIndex : insertIndex,
+        insertProperties : insertProperties,
         setStories : function (scopeStories){
             stories = scopeStories;
         }
@@ -54,7 +73,7 @@ function ctrl($scope,  $http, ui_data) {
 
     var search = window.location.search;
 
-    if ((search === undefined) ||(search === "")){
+    if ((search === undefined) || (search === "")){
         $scope.showList = true;
         $scope.currentStory = undefined;
     }
@@ -70,13 +89,16 @@ function ctrl($scope,  $http, ui_data) {
         data.currentStory = story;
     };
 
-    if ($scope.stories.length === 0)
+    if ($scope.stories.length === 0){
         $http.get('../js/uidevtest-data.js').success(function(data){
-            $scope.stories = ui_data.insertIndex(data.objects);
+            $scope.stories = ui_data.insertProperties(data.objects);
             ui_data.setStories($scope.stories);
 
             $scope.currentStory = ui_data.getStoryByIndex(search);
             $('#currentStory').html($scope.currentStory.story);
+            $('#leftColumn').html($scope.currentStory.leftColumn);
+            $('#rightColumn').html($scope.currentStory.rightColumn);
         });
+    }
 }
 

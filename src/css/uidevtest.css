@@ -24,21 +24,15 @@
 
 .list-img{
     float: left;
-    margin-left: 150px;
-    width: 30%;
+    margin-left: 30%;
 }
 
-.view-picture{
-    width: 260px;
-    height: 330px;
-    padding:1px;
-    border:1px solid #021a40;
-}
 
 .list-container{
-    float: right;
+    float: left;
     width:50%;
     text-align: left;
+    margin-left: 20px;
 }
 
 .list-story{
@@ -68,12 +62,13 @@
 
 .news-detail h1 {
     font-size: 24px;
-    color: #444444;
+    color: #036dbe;
 }
 
 .news-detail a {
     color: #036dbe;
 }
+
 .bread-crumb{
     padding-bottom: 20px;
     margin-bottom: 10px;
@@ -106,10 +101,12 @@
 
 .bread-crumb-icon{
     width:20px;
-    height:20px;
+    height:25px;
     background: url('../images/uidevtest-sprites.png') no-repeat;
     padding-bottom: 5px;
+
 }
+
 .comment{
     background-position: 0 0;
 }
@@ -122,9 +119,14 @@
     background-position: -40px 0;
 }
 
-.vote-img{
+.vote{
     background-position: -60px 0;
 
+}
+
+.view-picture{
+    margin-left: 5%;
+    width: 260px;
 }
 
 .story {
@@ -135,6 +137,66 @@
 .photo-caption{
     font-size: 14px;
     color: #444444;
-    margin-left: 20%;
+    width: 260px;
+    margin-left: 5%;
+    text-align: right;
 }
 
+#leftColumn{
+    display: none;
+}
+
+#rightColumn{
+    display: none;
+}
+
+@media (min-width: 480px) {
+/* styles assigned when width is smaller than 400px;*/
+        .bread-crumb{
+            float: right;
+            width: 65%;
+            margin-left: 10px;
+        }
+
+        .left-panel{
+            position: absolute;
+            width: 30%;
+        }
+
+        .story {
+            margin-left: 30%;
+            margin-top: 30px;
+            clear: right;
+            width: 60%;
+        }
+
+        #currentStory{
+            display: none;
+        }
+
+        #leftColumn{
+            display: block;
+            position: absolute;
+            width: 260px;
+        }
+
+        #rightColumn{
+            display: block;
+            margin-left: 275px; /*260+15*/
+            width: 260px;
+            padding-top: 2px;
+
+        }
+
+        .bread-crumb-icon{
+            filter: url(filters.svg#grayscale); /* Firefox 3.5+ */
+            filter: gray; /* IE6-9 */
+            -webkit-filter: grayscale(1); /* Google Chrome & Safari 6+ */
+        }
+
+        .bread-crumb-icon:hover {
+            filter: none;
+            -webkit-filter: grayscale(0);
+        }
+
+    }
