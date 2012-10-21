@@ -58,8 +58,6 @@ app.factory('ui_data', ['$http',function($http) {
     };
 }]);
 
-
-
 function ctrl($scope,  $http, ui_data) {
 
     $scope.currentStory = ui_data.currentStory;
