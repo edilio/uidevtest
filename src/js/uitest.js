@@ -86,7 +86,7 @@ function ctrl($scope,  $http, ui_data) {
     $scope.showDetail = function (story){
         $scope.showList = false;
         $scope.currentStory = story;
-        data.currentStory = story;
+        ui_data.currentStory = story;
     };
 
     if ($scope.stories.length === 0){
